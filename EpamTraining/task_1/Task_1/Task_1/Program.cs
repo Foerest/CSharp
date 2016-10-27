@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 public class Point
 {
@@ -12,7 +14,8 @@ public class Point
     public void Show() { Console.WriteLine("X: " + X + " Y: " + Y); }      
 }
 
-public class Tasks
+
+    public class Tasks
 {
     public Tasks() { }
     public void Task_1()
@@ -62,6 +65,13 @@ public class Tasks
             Console.WriteLine("Executing finally block.");
         }
     }
+    /*public void Task_3()
+    {
+        TextBlock tb = new TextBlock("Hello World!");//создали новый элемент
+        Thickness mrgn = new Thickness(0, 0, 0, 0);
+        tb.Margin = mrgn;
+        MasterGrid.Children.Add(tb);
+    }*/
 } 
 
 class Program
