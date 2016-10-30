@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Diagnostics;
 
 public class Point
 {
@@ -18,43 +19,36 @@ public class Point
     public class Tasks
 {
     public Tasks() { }
-    public void Task_1()
+    
+} 
+
+class Program
+{
+    public static void Task_1()
     {
-        string str = "", temp;
+        string str="",temp;
         do
         {
             temp = Console.ReadLine();
-            str += temp + ',';
-            if (temp.Length == 0 && str.Length > 1) str = str.Substring(0, str.Length - 2);
+            if (temp.Length > 0) str+="X: " + temp.Substring(0,temp.IndexOf(",")) + "   \tY: " + temp.Substring(temp.IndexOf(",")+1)+"\n";
         }
-        while (temp.Length > 0);
-
-        string[] Arr = str.Split(',');
-
-        for (int i = 0; i < Arr.Length; i += 2)
-            Console.WriteLine("X: " + Arr[i] + " Y: " + Arr[i + 1]);
+        while (temp.Length != 0);
+        Console.Write(str);
     }
-    public void Task_2(string put="D:\\Test1.txt", string output="D:\\Test1!.txt")
+    public static void Task_2()
     {
-        String line;
-
         try
         {
-            StreamReader sr = new StreamReader(put ?? "D:\\Test1.txt");
-            StreamWriter sw = new StreamWriter(output ?? "D:\\Test1!.txt", true, Encoding.ASCII);
-
-            line = sr.ReadLine();
-
-            while (line != null)
+            StreamReader myStreamReader = new StreamReader(Console.OpenStandardInput());
+            string temp;
+            do
             {
-                string[] Values = line.Split(',');
-                sw.WriteLine("X: " + Values[0] + " Y: " + Values[1]);
-                line = sr.ReadLine();
+                temp = myStreamReader.ReadLine();
+                if (temp.Length > 0) Console.WriteLine("X: " + temp.Substring(0, temp.IndexOf(",")) + "   \tY: " + temp.Substring(temp.IndexOf(",") + 1));
             }
+            while (temp.Length != 0);
 
-            sr.Close();
-            sw.Close();
-            Console.Read();
+            myStreamReader.Close();
         }
         catch (Exception e)
         {
@@ -72,17 +66,12 @@ public class Point
         tb.Margin = mrgn;
         MasterGrid.Children.Add(tb);
     }*/
-} 
-
-class Program
-{
     static void Main(string[] args)
     {
-        Tasks a = new Tasks();
         Console.WriteLine("----------Task 1----------");
-        a.Task_1();
+        //Task_1();
         Console.WriteLine("----------Task 2----------");
-        a.Task_2();
+        Task_2();
         Console.WriteLine("----------Task 3----------");
 
     }
